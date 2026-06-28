@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: pytest -q
+      - run: python -m build --sdist --wheel
+      - run: python -m twine check dist/*
+      - name: CLI smoke (entry point + every domain)
+        run: |
+          work="$(mktemp -d)"; cd "$work"
+          claim-gate --version
+          claim-gate --list-domains
+          claim-gate infra-cost --help
+          claim-gate bio --help
+          claim-gate model --help

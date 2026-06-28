@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+.claim-gate/
+.infra-cost-radar/
+.bio-ai-claim-gate/
+.model-claim-diligence/

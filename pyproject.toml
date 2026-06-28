@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "claim-gate"
+version = "0.2.0"
+description = "Evidence-gated ledger for public AI claims and signals — infra-cost, bio, and model domains behind one CLI."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Ying Chen" }]
+keywords = ["ai", "claims", "evidence", "diligence", "cost", "safety"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["build>=1", "pytest>=8", "ruff>=0.11", "twine>=6"]
+
+[project.scripts]
+claim-gate = "claim_gate.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/yingchen-coding/claim-gate"
+Repository = "https://github.com/yingchen-coding/claim-gate"
+Issues = "https://github.com/yingchen-coding/claim-gate/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["claim_gate"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
