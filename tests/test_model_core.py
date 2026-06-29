@@ -268,6 +268,75 @@ def test_feed_marks_robot_safety_stack_as_high_risk(tmp_path: Path, monkeypatch)
     assert claim["recommendation"] == "verify-first"
 
 
+def test_feed_marks_mythos_vulnerability_claim_as_security(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    source = tmp_path / "security.json"
+    source.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "title": "GLM-5.2 漏洞挖掘能力达到 Mythos 水平",
+                        "source_url": "https://example.com/glm-mythos",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = feed.import_claim_feed(source)
+
+    assert result["imported"] == 1
+    claim = core.load()["claims"][0]
+    assert claim["subject"] == "GLM-5.2"
+    assert claim["claim_type"] == "security"
+    assert claim["risk"] == "high"
+    assert "safety_evidence" in claim["missing_evidence"]
+
+
+def test_feed_marks_ai_memory_as_architecture_claim(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    source = tmp_path / "memory.json"
+    source.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "title": "Karpathy 投了一家 AI 记忆公司，撞名 DeepSeek Engram 记忆架构",
+                        "source_url": "https://example.com/engram",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = feed.import_claim_feed(source)
+
+    assert result["imported"] == 1
+    claim = core.load()["claims"][0]
+    assert claim["subject"] == "Engram"
+    assert claim["claim_type"] == "architecture"
+    assert claim["recommendation"] == "track"
+
+
+def test_example_sina_feed_imports_public_safe_claims(tmp_path: Path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    source = Path(__file__).parents[1] / "examples" / "sina-2026-06-29-claim-feed.json"
+
+    result = feed.import_claim_feed(source)
+
+    assert result["items"] == 5
+    assert result["imported"] == 5
+    claims = core.load()["claims"]
+    by_subject = {claim["subject"]: claim for claim in claims}
+    assert by_subject["GLM-5.2"]["claim_type"] == "security"
+    assert by_subject["Momenta"]["physical_system"] == "robotaxi"
+    assert by_subject["GPTZero"]["claim_type"] == "security"
+    assert by_subject["GPTZero"]["recommendation"] == "verify-first"
+
+
 def test_feed_marks_world_model_claim_as_physical_ai(tmp_path: Path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     source = tmp_path / "world-model.json"

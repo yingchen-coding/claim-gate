@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "title": "美媒：智谱GLM-5.2漏洞挖掘能力达到Mythos水平",
+      "source_url": "https://cj.sina.com.cn/articles/view/1704103183/65928d0f0200auxc8",
+      "summary": "Article claims a model reaches Mythos-like vulnerability discovery capability. Treat as a security claim until independent safety evidence exists."
+    },
+    {
+      "title": "任务完成率正在杀死 AI Agent？听昆仑万维Skywork产品总监分享Agent真指标",
+      "source_url": "https://example.com/agent-completion-metrics",
+      "summary": "Article discusses task-completion metrics for AI agents. Treat as a benchmark/adoption claim, not as proof of agent reliability."
+    },
+    {
+      "title": "两家企业同称物理AI第一股，Momenta到底算不算正统？",
+      "source_url": "https://example.com/momenta-physical-ai",
+      "summary": "Article claims competing physical-AI company positioning. Treat as physical-AI deployment/financial positioning evidence requiring source checks."
+    },
+    {
+      "title": "Grammarly 母公司收购GPTZero：一边帮你用AI写，一边帮你查AI写？",
+      "source_url": "https://example.com/grammarly-gptzero",
+      "summary": "Article claims an AI-writing and AI-detection workflow merger. Treat as content-authenticity/security claim until detection evidence is validated."
+    },
+    {
+      "title": "Karpathy投了一家AI记忆公司，撞名 DeepSeek Engram 记忆架构",
+      "source_url": "https://example.com/engram-memory",
+      "summary": "Article claims a model memory architecture/company signal. Treat as architecture claim requiring technical evidence."
+    }
+  ]
+}

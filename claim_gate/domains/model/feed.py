@@ -115,6 +115,25 @@ def claim_type_for(title: str, summary: str) -> str:
     if any(
         term in text
         for term in (
+            "mythos",
+            "vulnerability",
+            "漏洞",
+            "攻防",
+            "网络安全",
+            "security",
+            "exploit",
+            "攻击",
+            "防御",
+            "gptzero",
+            "ai detection",
+            "ai 写",
+            "ai写",
+        )
+    ):
+        return "security"
+    if any(
+        term in text
+        for term in (
             "halos",
             "robot safety",
             "safety system",
@@ -124,6 +143,19 @@ def claim_type_for(title: str, summary: str) -> str:
         )
     ):
         return "safety"
+    if any(
+        term in text
+        for term in (
+            "engram",
+            "memory",
+            "记忆",
+            "context window",
+            "上下文窗口",
+            "架构",
+            "architecture",
+        )
+    ):
+        return "architecture"
     if any(
         term in text
         for term in (
@@ -142,7 +174,10 @@ def claim_type_for(title: str, summary: str) -> str:
         return "cost"
     if any(term in text for term in ("安全", "攻击", "封号", "jailbreak", "risk", "ban")):
         return "security"
-    if any(term in text for term in ("benchmark", "实测", "榜", "超过", "wins", "beats")):
+    if any(
+        term in text
+        for term in ("benchmark", "实测", "榜", "超过", "wins", "beats", "任务完成率", "completion")
+    ):
         return "benchmark"
     if any(term in text for term in ("发布", "上线", "release", "launch", "开源")):
         return "release"
@@ -168,16 +203,50 @@ def risk_for(claim_type: str, title: str, summary: str) -> str:
 
 def subject_for(title: str, summary: str) -> str:
     text = f"{title} {summary}"
-    for term in ("DentFound", "Momenta", "Waymo", "Tesla", "NVIDIA", "Cosmos"):
-        match = re.search(rf"\b{re.escape(term)}\b", text, flags=re.IGNORECASE)
+    for term in (
+        "Anthropic",
+        "OpenAI",
+        "Codex",
+        "Claude",
+        "Patronus AI",
+        "GPTZero",
+        "Grammarly",
+        "Adobe",
+        "Topaz Labs",
+        "Engram",
+        "Karpathy",
+        "DentFound",
+        "Momenta",
+        "Waymo",
+        "Tesla",
+        "NVIDIA",
+        "Cosmos",
+    ):
+        match = term_match(text, term)
         if match:
             return match.group(0)
     for term in core.MODEL_TERMS:
-        match = re.search(rf"\b{re.escape(term)}[A-Za-z0-9_.-]*\b", text, flags=re.IGNORECASE)
+        match = model_term_match(text, term)
         if match:
             return match.group(0)
     cleaned = re.sub(r"\s+", " ", title).strip()
     return f"Model claim: {cleaned[:60]}"
+
+
+def term_match(text: str, term: str) -> re.Match[str] | None:
+    return re.search(
+        rf"(?<![A-Za-z0-9_.-]){re.escape(term)}(?![A-Za-z0-9_.-])",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+
+def model_term_match(text: str, term: str) -> re.Match[str] | None:
+    return re.search(
+        rf"(?<![A-Za-z0-9_.-]){re.escape(term)}[A-Za-z0-9_.-]*",
+        text,
+        flags=re.IGNORECASE,
+    )
 
 
 def claim_text(title: str, summary: str) -> str:
