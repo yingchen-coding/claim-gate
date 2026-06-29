@@ -24,6 +24,16 @@
       "title": "Karpathy投了一家AI记忆公司，撞名 DeepSeek Engram 记忆架构",
       "source_url": "https://example.com/engram-memory",
       "summary": "Article claims a model memory architecture/company signal. Treat as architecture claim requiring technical evidence."
+    },
+    {
+      "title": "Adobe 宣布收购 Topaz Labs，AI影像增强技术将整合至 Firefly",
+      "source_url": "https://example.com/adobe-topaz-acquisition",
+      "summary": "Article claims a creative-AI acquisition and product integration. Treat as a release/acquisition claim until primary company filings or announcements are checked."
+    },
+    {
+      "title": "DeepTech：大型药企加速投入 AI 制药和药物发现",
+      "source_url": "https://example.com/bio-ai-drug-discovery",
+      "summary": "Article claims AI drug-discovery adoption by pharmaceutical companies. Treat as a high-risk bio/medical claim until validation, safety, and clinical evidence are checked."
     }
   ]
 }

@@ -327,14 +327,17 @@ def test_example_sina_feed_imports_public_safe_claims(tmp_path: Path, monkeypatc
 
     result = feed.import_claim_feed(source)
 
-    assert result["items"] == 5
-    assert result["imported"] == 5
+    assert result["items"] == 7
+    assert result["imported"] == 7
     claims = core.load()["claims"]
     by_subject = {claim["subject"]: claim for claim in claims}
     assert by_subject["GLM-5.2"]["claim_type"] == "security"
     assert by_subject["Momenta"]["physical_system"] == "robotaxi"
     assert by_subject["GPTZero"]["claim_type"] == "security"
     assert by_subject["GPTZero"]["recommendation"] == "verify-first"
+    assert by_subject["Adobe"]["claim_type"] == "release"
+    assert by_subject["DeepTech"]["claim_type"] == "medical"
+    assert by_subject["DeepTech"]["risk"] == "high"
 
 
 def test_feed_marks_world_model_claim_as_physical_ai(tmp_path: Path, monkeypatch):

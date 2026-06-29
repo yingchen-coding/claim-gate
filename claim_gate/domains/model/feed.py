@@ -104,11 +104,17 @@ def claim_type_for(title: str, summary: str) -> str:
             "dental",
             "dentfound",
             "doctor",
+            "drug discovery",
+            "biotech",
             "医疗",
             "临床",
             "牙科",
             "诊断",
             "医生",
+            "制药",
+            "药企",
+            "药物",
+            "生物",
         )
     ):
         return "medical"
@@ -179,7 +185,7 @@ def claim_type_for(title: str, summary: str) -> str:
         for term in ("benchmark", "实测", "榜", "超过", "wins", "beats", "任务完成率", "completion")
     ):
         return "benchmark"
-    if any(term in text for term in ("发布", "上线", "release", "launch", "开源")):
+    if any(term in text for term in ("发布", "上线", "release", "launch", "开源", "收购", "acquisition")):
         return "release"
     if any(term in text for term in ("企业", "adoption", "用户", "客户")):
         return "adoption"
@@ -213,6 +219,7 @@ def subject_for(title: str, summary: str) -> str:
         "Grammarly",
         "Adobe",
         "Topaz Labs",
+        "DeepTech",
         "Engram",
         "Karpathy",
         "DentFound",
