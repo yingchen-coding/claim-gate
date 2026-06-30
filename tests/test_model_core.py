@@ -122,6 +122,24 @@ def test_feed_imports_generic_items(tmp_path: Path, monkeypatch):
     assert "benchmark or reproduction_evidence" in claim["missing_evidence"]
 
 
+def test_subject_fallback_prefers_concrete_latin_product_token():
+    subject = feed.subject_for(
+        "ABCoder+MCP+Trae Agent的实战应用，揭秘AI Agent如何提升开发效率！",
+        "",
+    )
+
+    assert subject == "ABCoder"
+
+
+def test_subject_fallback_uses_first_clause_for_chinese_headline_without_brand():
+    subject = feed.subject_for(
+        "漏洞挖掘从数月缩至数小时，网络安全治理走到十字路口",
+        "",
+    )
+
+    assert subject == "漏洞挖掘从数月缩至数小时"
+
+
 def test_physical_ai_claim_requires_safety_and_deployment_evidence():
     record = core.make_record(
         subject="Momenta",

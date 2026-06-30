@@ -237,7 +237,15 @@ def subject_for(title: str, summary: str) -> str:
         if match:
             return match.group(0)
     cleaned = re.sub(r"\s+", " ", title).strip()
-    return f"Model claim: {cleaned[:60]}"
+    # Fallback for headlines with no known brand (common on Chinese feeds): prefer the first
+    # concrete latin product token (e.g. "ABCoder", "Trae", "Qwen3") over a generic word, else the
+    # title's first clause — never the noisy "Model claim: <whole headline>" we used to emit.
+    generic = {"agent", "model", "ai", "app", "api", "llm", "the", "and", "for", "with", "data"}
+    for token in re.findall(r"[A-Za-z][A-Za-z0-9.]{1,}", cleaned):
+        if token.lower() not in generic and (token[0].isupper() or any(c.isdigit() for c in token)):
+            return token
+    clause = re.split(r"[，。、：:!！?？\-—|]", cleaned)[0].strip()
+    return clause[:40] or "model claim"
 
 
 def term_match(text: str, term: str) -> re.Match[str] | None:
