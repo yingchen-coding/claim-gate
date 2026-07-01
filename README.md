@@ -14,6 +14,35 @@ decision.
 
 It is local-first and zero-dependency. Nothing leaves your machine.
 
+## Why It Matters
+
+AI teams lose time when hype turns directly into roadmap, dependency, or investment decisions.
+claim-gate inserts a small but strict step between "interesting claim" and "act on it":
+
+1. record the claim with a source
+2. classify the domain and risk
+3. attach evidence or leave it blocked
+4. export a decision-ready ledger
+
+The default posture is conservative. A claim can be useful and still remain `verify-first` until
+independent evidence exists.
+
+## Quick Start
+
+```bash
+python -m pip install -e .
+claim-gate --list-domains
+claim-gate model add \
+  --subject "ExampleModel" \
+  --claim-type benchmark \
+  --claim "Claims a new coding benchmark result." \
+  --source-url "https://example.com/model-card"
+claim-gate model validate
+```
+
+Expected behavior: the claim is tracked, but it does not become actionable unless the domain rules
+say the evidence is strong enough.
+
 ## Domains
 
 Each domain is a self-contained ledger with its own schema, vocabulary, validation rules, and
