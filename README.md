@@ -103,15 +103,6 @@ claim_gate/
 Adding a domain means dropping a module under `domains/` and registering its `main(argv)` entry —
 the CLI, packaging, and CI come for free.
 
-## Local Review Gate
-
-```bash
-scripts/pr_review_check.sh
-```
-
-This runs compile checks, tests, Ruff when available, secret scanning, and commit-history
-attribution checks. GitHub runs the same gate through the `PR Review Gate` workflow.
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
