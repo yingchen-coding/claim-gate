@@ -16,6 +16,12 @@ decision.
 
 It is local-first and zero-dependency. Nothing leaves your machine.
 
+## Star This If
+
+- You track AI/model claims and want them backed by local evidence, not hype.
+- You want one CLI that gates each claim as `act` / `track` / `verify-first` / `reject`.
+- You need an auditable, local-first ledger of what's verified, unproven, or rejected.
+
 ## Why It Matters
 
 AI teams lose time when hype turns directly into roadmap, dependency, or investment decisions.
