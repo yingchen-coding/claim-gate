@@ -10,3 +10,5 @@ dist/
 .infra-cost-radar/
 .bio-ai-claim-gate/
 .model-claim-diligence/
+
+scripts/pr_review_check.sh
