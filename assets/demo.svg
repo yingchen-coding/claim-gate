@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="298" viewBox="0 0 780 298" role="img" aria-label="claim-gate — no hyped model claim ships unverified">
+  <rect width="780" height="298" rx="10" fill="#0d1117" stroke="#30363d"/>
+  <rect width="780" height="40" rx="10" fill="#161b22"/>
+  <rect y="30" width="780" height="10" fill="#161b22"/>
+  <circle cx="18" cy="20" r="6" fill="#ff5f56"/><circle cx="38" cy="20" r="6" fill="#ffbd2e"/><circle cx="58" cy="20" r="6" fill="#27c93f"/>
+  <text x="390" y="24" fill="#8b949e" font-family="monospace" font-size="12" text-anchor="middle">claim-gate — no hyped model claim ships unverified</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5">
+    <text x="22" y="58" fill="#e6edf3" xml:space="preserve">$ claim-gate model import-feed today.json</text><text x="22" y="80" fill="#8b949e" xml:space="preserve">  imported 12 model claims from the news feed</text><text x="22" y="124" fill="#e6edf3" xml:space="preserve">$ claim-gate model check abcoder-mcp</text><text x="22" y="146" fill="#f85149" xml:space="preserve">  ✗ BLOCKED — no local verification; source is a launch blog</text><text x="22" y="190" fill="#e6edf3" xml:space="preserve">$ claim-gate model verify abcoder-mcp --command &quot;python eval.py&quot; --passed</text><text x="22" y="212" fill="#3fb950" xml:space="preserve">  ✓ evidence recorded</text><text x="22" y="234" fill="#e6edf3" xml:space="preserve">$ claim-gate model check abcoder-mcp</text><text x="22" y="256" fill="#3fb950" xml:space="preserve">  ✓ may be acted on — backed by 1 passing local check</text>
+  </g>
+</svg>

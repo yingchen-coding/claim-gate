@@ -4,6 +4,8 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
+![claim-gate — no hyped model claim ships unverified](assets/demo.svg)
+
 **One evidence-gated ledger for public AI claims and signals — many domains, one CLI.**
 
 Public AI claims arrive faster than they can be verified: a model is "cheaper", an infra trend is
