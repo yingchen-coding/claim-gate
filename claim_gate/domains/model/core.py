@@ -53,6 +53,7 @@ VALID_SAFETY_GATES = {
     "regulatory-proof-needed",
     "financial-source-needed",
     "clinical-validation-needed",
+    "retrieval-adversary-eval-needed",
 }
 VALID_DEPLOYMENT_STAGES = {"", "unknown", "research", "demo", "pilot", "production-claimed"}
 MODEL_TERMS = (

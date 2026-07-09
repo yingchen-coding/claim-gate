@@ -121,6 +121,19 @@ def claim_type_for(title: str, summary: str) -> str:
     if any(
         term in text
         for term in (
+            "retrieval agent",
+            "search agent",
+            "browser agent",
+            "检索agent",
+            "检索 agent",
+            "上网搜索",
+            "虚假内容误导",
+            "沉默漂移",
+            "误拒",
+            "refusal drift",
+            "silent drift",
+            "misled",
+            "poisoned search",
             "mythos",
             "vulnerability",
             "漏洞",
@@ -307,6 +320,24 @@ def safety_gate_for(title: str, summary: str) -> str:
     if not physical_system_for(title, summary):
         if claim_type_for(title, summary) == "medical":
             return "clinical-validation-needed"
+        if claim_type_for(title, summary) in {"security", "safety"} and any(
+            term in text
+            for term in (
+                "retrieval agent",
+                "search agent",
+                "browser agent",
+                "检索agent",
+                "检索 agent",
+                "上网搜索",
+                "虚假内容误导",
+                "沉默漂移",
+                "误拒",
+                "refusal drift",
+                "silent drift",
+                "poisoned search",
+            )
+        ):
+            return "retrieval-adversary-eval-needed"
         return ""
     if any(term in text for term in ("halos", "安全系统", "安全架构", "safety system")):
         return "safety-eval-needed"

@@ -204,6 +204,41 @@ def test_feed_marks_medical_dental_items_as_clinical_gate(tmp_path: Path, monkey
     assert claim["recommendation"] == "verify-first"
 
 
+def test_feed_marks_retrieval_agent_misinformation_as_security_gate(
+    tmp_path: Path,
+    monkeypatch,
+):
+    monkeypatch.chdir(tmp_path)
+    source = tmp_path / "retrieval-agent.json"
+    source.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "title": "13个大模型实测，检索agent真的可信吗？",
+                        "source_url": "https://example.com/retrieval-agent",
+                        "summary": (
+                            "Models using web search can be misled by false content; "
+                            "the article reports silent drift and refusal errors."
+                        ),
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = feed.import_claim_feed(source)
+
+    assert result["imported"] == 1
+    claim = core.load()["claims"][0]
+    assert claim["claim_type"] == "security"
+    assert claim["risk"] == "high"
+    assert claim["safety_gate"] == "retrieval-adversary-eval-needed"
+    assert claim["recommendation"] == "verify-first"
+    assert "safety_evidence" in claim["missing_evidence"]
+
+
 def test_physical_ai_claim_exports_event_graph_csv(tmp_path: Path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     data = core.load()
