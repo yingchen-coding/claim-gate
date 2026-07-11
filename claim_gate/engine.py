@@ -52,5 +52,4 @@ def write_json(path: Path, value: dict[str, Any]) -> None:
         tmp.write_text(text, encoding="utf-8")
         os.replace(tmp, path)
     finally:
-        if tmp.exists():
-            tmp.unlink()
+        tmp.unlink(missing_ok=True)
