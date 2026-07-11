@@ -1,9 +1,12 @@
 from claim_gate.domains.infra_cost.core import (
     import_signals,
+    load,
     make_signal,
     recommendation,
     render,
+    save,
     score_signal,
+    upsert,
     validate_signal,
     validate_state,
 )
@@ -96,6 +99,25 @@ def test_import_dedupes_by_generated_id():
     assert len(data["signals"]) == 1
     assert "same public article" in data["signals"][0]["evidence"]
     assert validate_state(data) == []
+
+
+def test_save_and_load_round_trip(tmp_path):
+    path = tmp_path / "signals.json"
+    signal = make_signal(
+        title="GPU supply tightens",
+        source_type="public_news",
+        source_url="https://example.com/gpu-supply",
+        signal_type="gpu-supply",
+        cost_driver="gpu",
+        summary="Public article on GPU allocation.",
+    )
+    data: dict = {"version": 1, "signals": []}
+    upsert(data, signal)
+    save(data, path)
+    assert path.exists()
+    loaded = load(path)
+    assert len(loaded["signals"]) == 1
+    assert loaded["signals"][0]["id"] == signal.id
 
 
 def test_render_orders_by_score():

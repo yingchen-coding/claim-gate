@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-import json
 import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from ...engine import now
+from ...engine import now, read_json, write_json
 
 VALID_SIGNAL_TYPES = {
     "capex-pressure",
@@ -84,17 +83,14 @@ def empty_state() -> dict[str, Any]:
 
 
 def load(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return empty_state()
-    data = json.loads(path.read_text(encoding="utf-8"))
-    if not isinstance(data, dict) or not isinstance(data.get("signals"), list):
+    data = read_json(path, empty_state())
+    if not isinstance(data.get("signals"), list):
         raise ValueError(f"invalid infra-cost state: {path}")
     return data
 
 
 def save(data: dict[str, Any], path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_json(path, data)
 
 
 def make_signal(
