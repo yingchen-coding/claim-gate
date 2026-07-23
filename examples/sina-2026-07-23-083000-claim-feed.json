@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "title": "36氪首发 | 同济博士做几何、物理AI重构设计制造，累计获超3亿元融资",
+      "source_url": "https://cj.sina.com.cn/articles/view/1750070171/684ff39b02001gu1a",
+      "summary": "Daily Sina collector selected this with score=11, theme=claim_diligence, lane=claim_gate. Verify exact article before use. Signals: +5:智能体, +2:封, +4:物理ai. Intro: 融资将用于市场开拓（含出海）及核心模型技术研发。设序科技成立于2020年，旗下产品“则形AI”是基于自研工业世界模型与自然语言大模型封装的面向硬件工程的设计研发智能体平台，提供云架构下的3D设计方案与2D工程图纸智能生成功能... Treat as an unverified public AI claim; import into claim-gate and keep it verify-first until independent evidence is attached."
+    },
+    {
+      "title": "智能点单、机器人取货……AI技术如何融入生活？",
+      "source_url": "https://k.sina.com.cn/article_1887344341_707e96d502001sss8.html",
+      "summary": "Daily Sina collector selected this with score=8, theme=physical_ai, lane=claim_graph. Verify exact article before use. Signals: +5:智能体, +3:机器人. Intro: 作为众多科技企业竞相入局的前沿领域，大模型、智能体和具身智能等产品是本次展会的热点，这些技术如何转化为现实生产力、如何改变人们的日常生活，引起许多观众的关注... Treat as an unverified public AI claim; import into claim-gate and keep it verify-first until independent evidence is attached."
+    }
+  ]
+}
