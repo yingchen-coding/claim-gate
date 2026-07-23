@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "title": "专治智驾幻觉，文远知行推出WITT物理AI大模型",
+      "source_url": "https://finance.sina.com.cn/stock/t/2026-07-22/doc-iniisxzy4734976.shtml",
+      "summary": "Daily Sina collector selected this with score=7, theme=physical_ai, lane=claim_graph. Verify exact article before use. Signals: +4:物理ai, +3:自动驾驶. Intro: （来源：南方都市报）近日，自动驾驶企业文远知行WeRide发布了自研的物理AI认知基础大模型WeRide WITT（World Intelligence Toward Truth）... Treat as an unverified public AI claim; import into claim-gate and keep it verify-first until independent evidence is attached."
+    },
+    {
+      "title": "小鹏补齐物理AI的视觉底座",
+      "source_url": "https://finance.sina.com.cn/stock/relnews/hk/2026-07-22/doc-iniisttv1906306.shtml",
+      "summary": "Daily Sina collector selected this with score=7, theme=physical_ai, lane=claim_graph. Verify exact article before use. Signals: +4:物理ai, +3:机器人. Intro: 覆盖智驾座舱机器人全场景。7月21日，小鹏集团称，正式发布TuringViT高效视觉编码器，面向VLM（视觉语言模型）/VLA（视觉语言动作模型）应用场景，从架构设计、数据范式与训练流程进行了系统性重构... Treat as an unverified public AI claim; import into claim-gate and keep it verify-first until independent evidence is attached."
+    }
+  ]
+}
