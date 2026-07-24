@@ -24,7 +24,7 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["build>=1", "pytest>=8", "ruff>=0.11", "twine>=6"]
+dev = ["build>=1", "pytest>=8", "ruff>=0.11,<0.16", "twine>=6"]
 
 [project.scripts]
 claim-gate = "claim_gate.cli:main"
